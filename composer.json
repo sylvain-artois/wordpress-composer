@@ -33,8 +33,14 @@
     },
     "preserve-paths": [
       "web/wp-config.php",
-      "web/wp-content/uploads"      
+      "web/wp-content/uploads",
+      "web/wp-content/themes/dyepop"    
     ],
     "wordpress-install-dir": "web"
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "wp plugin install https://github.com/wp-graphql/wp-graphql/archive/develop.zip --activate --path=web"
+    ]
   }
 }
