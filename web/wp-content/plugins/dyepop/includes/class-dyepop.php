@@ -66,8 +66,8 @@ class Dyepop {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'PLUGIN_NAME_VERSION' ) ) {
-			$this->version = PLUGIN_NAME_VERSION;
+		if ( defined( 'DYEPOP_VERSION' ) ) {
+			$this->version = DYEPOP_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
@@ -76,7 +76,8 @@ class Dyepop {
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
-		$this->define_public_hooks();
+		//Is there a need for public hooks ?
+		//$this->define_public_hooks();
 
 	}
 
@@ -169,9 +170,7 @@ class Dyepop {
 
 		$plugin_public = new Dyepop_Public( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
+		$this->loader->add_action('init', $plugin_public,  'define_custom_post_type');
 	}
 
 	/**
